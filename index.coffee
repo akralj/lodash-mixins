@@ -25,19 +25,19 @@ _.mixin padWithZeros: (num, length=7) ->
   else false
 
 
-module.exports = _
-
-
-###
 _.mixin compactObject: (obj) ->
   _.each obj, (value, key) ->
     if _.isArray value
       value = value.map (e) -> e unless e is "N/A" # removes some extra values
       obj[key] = (_.compact value)
       delete obj[key] if obj[key].length is 0
-    delete obj[key]  unless value
+    delete obj[key] unless value
   return obj
 
+module.exports = _
+
+
+###
 
 #https://github.com/nrf110/deepmerge
 _.mixin deepMerge: (target, src) ->
