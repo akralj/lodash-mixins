@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/akralj/lodash-mixins/issues"
   },
-  "homepage": "https://github.com/akralj/lodash-mixins#readme"
+  "homepage": "https://github.com/akralj/lodash-mixins#readme",
+   "dependencies": {
+      "lodash": "latest"
+    }
 }
