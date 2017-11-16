@@ -38,9 +38,9 @@ _.mixin compactObject: (obj) ->
 _.mixin buildDateTime: (date, time) ->
   if not date then return null
   # not sure if instance of is helpful
-  if date instanceof Date
+  if Date.parse(date) isnt NaN
     # we do this instead of trimming getISOString because timezones can lead to the date be wrong ("2017-01-12T00:00:00+01" -> "2017-01-11T23:00:00Z")
-    date = "#{date.getFullYear()}-#{date.getMonth() + 1}-#{date.getDate()}"
+    console.log date = "#{date.getFullYear()}-#{date.getMonth() + 1}-#{date.getDate()}"
 
   if date.length > 0 then datum = date.slice(0, 10) else return null
   if time then "#{datum}T#{time}" else "#{datum}T00:00:00"
