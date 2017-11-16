@@ -1,11 +1,11 @@
 {
   "name": "lodash-mixins",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "collection for usefull lodash mixins",
   "main": "index.js",
   "scripts": {
     "build": "coffee -c index.coffee",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "coffee -w test.coffee | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,12 @@
     "url": "https://github.com/akralj/lodash-mixins/issues"
   },
   "homepage": "https://github.com/akralj/lodash-mixins#readme",
-   "dependencies": {
-      "lodash": "latest"
-    }
+  "devDependencies": {
+    "coffeescript": "^2.0.2",
+    "tap": "^10.7.3",
+    "tap-spec": "^4.1.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
 }

@@ -34,40 +34,17 @@ _.mixin compactObject: (obj) ->
     delete obj[key] unless value
   return obj
 
+
+_.mixin buildDateTime: (date, time) ->
+  if not date then return null
+  # not sure if instance of is helpful
+  if date instanceof Date
+    # we do this instead of trimming getISOString because timezones can lead to the date be wrong ("2017-01-12T00:00:00+01" -> "2017-01-11T23:00:00Z")
+    date = "#{date.getFullYear()}-#{date.getMonth() + 1}-#{date.getDate()}"
+
+  if date.length > 0 then datum = date.slice(0, 10) else return null
+  if time then "#{datum}T#{time}" else "#{datum}T00:00:00"
+
+
 module.exports = _
 
-
-###
-
-#https://github.com/nrf110/deepmerge
-_.mixin deepMerge: (target, src) ->
-  array = Array.isArray(src)
-  dst = array and [] or {}
-  if array
-    target = target or []
-    dst = dst.concat(target)
-    src.forEach (e, i) ->
-      if typeof target[i] is "undefined"
-        dst[i] = e
-      else if typeof e is "object"
-        dst[i] = _.deepMerge(target[i], e)
-      else
-        dst.push e  if target.indexOf(e) is -1
-
-  else
-    if target and typeof target is "object"
-      Object.keys(target).forEach (key) ->
-        dst[key] = target[key]
-
-    Object.keys(src).forEach (key) ->
-      if typeof src[key] isnt "object" or not src[key]
-        dst[key] = src[key]
-      else
-        unless target[key]
-          dst[key] = src[key]
-        else
-          dst[key] = _.deepMerge(target[key], src[key])
-
-  return dst
-
-###
